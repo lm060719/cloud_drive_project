@@ -59,20 +59,25 @@ cloud_drive_project/
 
 ### 1️⃣ 克隆项目
 
-```bash
+```
 git clone https://github.com/lm060719/cloud_drive_project.git
 cd cloud_drive_project
+```
 2️⃣ 启动后端
+```
+
 go run main.go
 
 或（生产模式）：
 
 GIN_MODE=release ./cloud-drive
+```
 3️⃣ 打开浏览器
 
 访问：
-
+```
 http://localhost:8080
+```
 ⚙️ 配置说明
 
 可在配置文件中修改：
@@ -87,8 +92,13 @@ http://localhost:8080
 
 📡 API 示例
 上传文件
+```
 POST /upload
+```
 下载文件
+```
 GET /download/:id
+```
 获取分享链接
+```
 GET /share/:id

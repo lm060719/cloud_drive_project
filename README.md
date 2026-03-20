@@ -44,6 +44,7 @@ Cloud Drive Project 是一个简单易用的云存储系统，用户可以通过
 ---
 
 ## 📁 项目结构（示例）
+```
 cloud_drive_project/
 ├── server/ # 后端服务
 ├── web/ # 前端页面
@@ -51,7 +52,7 @@ cloud_drive_project/
 ├── config/ # 配置文件
 ├── main.go # 程序入口
 └── README.md
-
+```
 
 ---
 

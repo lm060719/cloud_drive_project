@@ -1,0 +1,758 @@
+/* static/css/style.css - 移动端适配版 */
+
+/* 基础重置 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.6;
+    /* 防止移动端双击放大 */
+    touch-action: manipulation;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+/* 返回按钮样式 */
+.back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 18px;
+    text-decoration: none;
+    color: #333;
+    padding: 6px 12px;
+    border-radius: 6px;
+    background: #f2f2f2;
+    cursor: pointer;
+    transition: 0.2s;
+    z-index: 100;
+}
+
+.back-btn:hover {
+    background: #e2e2e2;
+}
+
+/* --- 登录/注册页样式 --- */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.card {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.card h2 {
+    margin-bottom: 30px;
+    color: #007bff;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-size: 16px; /* 防止iOS自动缩放 */
+}
+
+.input-group input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+    outline: none;
+}
+
+/* --- 按钮样式 --- */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    text-align: center;
+    font-size: 16px; /* 确保按钮可点击 */
+    min-height: 44px; /* iOS推荐的最小触摸区域 */
+}
+
+.primary-btn {
+    background-color: #007bff;
+    color: white;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.primary-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.link-text {
+    margin-top: 20px;
+}
+
+/* Flash 消息样式 */
+.flashes {
+    list-style: none;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.flashes li {
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 5px;
+}
+
+.flashes .success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.flashes .danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.flashes .info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+/* --- Dashboard 样式 --- */
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+}
+
+.header-left {
+    flex: 1;
+    min-width: 200px;
+}
+
+header h1 {
+    font-size: 1.8em;
+    margin: 0;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-right span {
+    margin-right: 10px;
+    font-size: 1.1em;
+}
+
+.logout-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 8px 15px;
+    white-space: nowrap;
+}
+
+.logout-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: none;
+}
+
+.dashboard-content {
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.breadcrumb-nav {
+    margin-top: 5px;
+    font-size: 0.9em;
+    word-break: break-all;
+}
+
+.breadcrumb-nav a {
+    color: #cce0ff;
+}
+
+.breadcrumb-nav a:hover {
+    color: white;
+}
+
+/* 操作栏 */
+.action-bar {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    align-items: center;
+    padding: 15px;
+    background: #e9ecef;
+    border-radius: 8px;
+    flex-wrap: wrap;
+}
+
+.action-bar form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    flex: 1;
+}
+
+.action-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    white-space: nowrap;
+}
+
+.action-btn:hover {
+    background-color: #1e7e34;
+}
+
+.submit-btn {
+    background-color: #ffc107;
+    color: #333;
+    padding: 10px 15px;
+}
+
+.submit-btn:hover:enabled {
+    background-color: #e0a800;
+}
+
+.submit-btn:disabled {
+    background-color: #adb5bd;
+    cursor: not-allowed;
+}
+
+.file-name-display {
+    font-style: italic;
+    color: #6c757d;
+    flex: 1;
+    min-width: 120px;
+}
+
+/* 进度条 */
+#progress-container {
+    width: 100%;
+    margin-top: 10px;
+}
+
+#progress-bar {
+    height: 20px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#progress-fill {
+    height: 100%;
+    width: 0%;
+    background-color: #007bff;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    transition: width 0.3s ease;
+}
+
+/* 文件列表 */
+.file-list {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.file-list th,
+.file-list td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.file-list th {
+    background-color: #f8f9fa;
+    font-weight: 700;
+    color: #495057;
+}
+
+.file-list tbody tr {
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.file-list tbody tr:hover {
+    background-color: #f1f1f1;
+    transform: translateX(5px);
+}
+
+.file-list tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.folder-row {
+    font-weight: 500;
+}
+
+.folder-icon {
+    color: #ffc107;
+    margin-right: 10px;
+}
+
+.file-icon {
+    color: #007bff;
+    margin-right: 10px;
+}
+
+.up-one-level {
+    font-style: italic;
+    background-color: #e9ecef;
+}
+
+.up-one-level:hover {
+    background-color: #dee2e6;
+}
+
+.name-col { width: 50%; }
+.type-col { width: 15%; }
+.size-col { width: 15%; }
+.action-col { width: 20%; text-align: center; }
+
+.action-divider {
+    margin: 0 5px;
+    color: #ccc;
+}
+
+.download-link,
+.delete-link {
+    color: #17a2b8;
+    padding: 5px 10px;
+    border: 1px solid #17a2b8;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+    display: inline-block;
+    margin: 2px;
+}
+
+.download-link:hover {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.delete-link {
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+.delete-link:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+.empty-message {
+    text-align: center;
+    padding: 50px;
+    color: #6c757d;
+    font-size: 1.2em;
+}
+
+/* --- 模态框 (Modal) 样式 --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 10px;
+    position: relative;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0;
+    }
+    to {
+        top: 0;
+        opacity: 1;
+    }
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #000;
+}
+
+.modal-content h3 {
+    margin-bottom: 20px;
+    color: #007bff;
+}
+
+.full-width-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.full-width-btn {
+    margin-top: 10px;
+}
+
+/* ============================================
+   移动端适配 (响应式设计)
+   ============================================ */
+
+/* 平板设备 */
+@media screen and (max-width: 768px) {
+    /* 返回按钮 */
+    .back-btn {
+        top: 10px;
+        left: 10px;
+        font-size: 16px;
+        padding: 8px 12px;
+    }
+
+    /* 登录/注册卡片 */
+    .card {
+        padding: 30px 20px;
+    }
+
+    .card h2 {
+        font-size: 1.5em;
+    }
+
+    /* Header 适配 */
+    header {
+        padding: 12px 15px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .header-left {
+        width: 100%;
+    }
+
+    header h1 {
+        font-size: 1.4em;
+    }
+
+    .header-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .header-right span {
+        font-size: 0.95em;
+    }
+
+    /* 面包屑导航 */
+    .breadcrumb-nav {
+        font-size: 0.8em;
+    }
+
+    /* Dashboard 内容 */
+    .dashboard-content {
+        padding: 15px;
+    }
+
+    /* 操作栏 */
+    .action-bar {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .action-bar form {
+        width: 100%;
+    }
+
+    .action-bar button {
+        width: 100%;
+    }
+
+    .file-name-display {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    /* 文件列表 - 隐藏类型列 */
+    .type-col {
+        display: none;
+    }
+
+    .name-col {
+        width: 60%;
+    }
+
+    .size-col {
+        width: 25%;
+        font-size: 0.85em;
+    }
+
+    .action-col {
+        width: 15%;
+    }
+
+    .file-list th,
+    .file-list td {
+        padding: 10px 8px;
+        font-size: 0.9em;
+    }
+
+    /* 操作按钮 - 只显示图标 */
+    .action-col a {
+        padding: 8px;
+        font-size: 0;
+    }
+
+    .action-col a i {
+        font-size: 16px;
+    }
+
+    .action-divider {
+        display: none;
+    }
+
+    /* 模态框 */
+    .modal-content {
+        margin: 20% auto;
+        padding: 20px;
+        width: 85%;
+    }
+}
+
+/* 手机设备 */
+@media screen and (max-width: 480px) {
+    /* 卡片 */
+    .card {
+        padding: 25px 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .card h2 {
+        font-size: 1.3em;
+        margin-bottom: 20px;
+    }
+
+    /* Header */
+    header h1 {
+        font-size: 1.2em;
+    }
+
+    .logout-btn {
+        padding: 6px 12px;
+        font-size: 0.9em;
+    }
+
+    .logout-btn i {
+        display: none; /* 隐藏图标，只显示文字 */
+    }
+
+    /* Dashboard */
+    .dashboard-content {
+        padding: 10px;
+    }
+
+    /* 操作栏按钮 */
+    .action-btn,
+    .submit-btn {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+
+    /* 文件列表 */
+    .file-list th,
+    .file-list td {
+        padding: 8px 5px;
+        font-size: 0.85em;
+    }
+
+    .name-col {
+        width: 50%;
+    }
+
+    .size-col {
+        width: 30%;
+    }
+
+    .action-col {
+        width: 20%;
+    }
+
+    /* 文件/文件夹图标 */
+    .folder-icon,
+    .file-icon {
+        font-size: 1.2em;
+    }
+
+    /* 空消息 */
+    .empty-message {
+        padding: 30px 15px;
+        font-size: 1em;
+    }
+
+    /* 模态框 */
+    .modal-content {
+        margin: 25% auto;
+        padding: 20px 15px;
+        width: 90%;
+    }
+
+    .modal-content h3 {
+        font-size: 1.2em;
+    }
+
+    /* Flash 消息 */
+    .flashes li {
+        font-size: 0.9em;
+        padding: 8px;
+    }
+}
+
+/* 超小屏幕设备 */
+@media screen and (max-width: 360px) {
+    .card {
+        padding: 20px 12px;
+    }
+
+    .input-group input {
+        padding: 10px 12px;
+    }
+
+    .btn {
+        padding: 8px 15px;
+        min-height: 40px;
+    }
+
+    header {
+        padding: 10px;
+    }
+
+    header h1 {
+        font-size: 1.1em;
+    }
+
+    .file-list th,
+    .file-list td {
+        padding: 6px 4px;
+        font-size: 0.8em;
+    }
+
+    .name-col {
+        width: 45%;
+    }
+
+    .size-col {
+        width: 30%;
+    }
+
+    .action-col {
+        width: 25%;
+    }
+}
+
+/* 横屏模式优化 */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .container {
+        padding: 10px;
+    }
+
+    .card {
+        padding: 20px;
+        max-width: 500px;
+    }
+
+    .modal-content {
+        margin: 5% auto;
+    }
+
+    header {
+        padding: 8px 15px;
+    }
+
+    .dashboard-content {
+        padding: 15px;
+    }
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册 - 云盘</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- 🔙 返回按钮 -->
+    <a class="back-btn" onclick="window.history.back()">← 返回</a>
+    
+    <div class="container">
+        <div class="card">
+            <h2>☁️ 注册新账号</h2>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <ul class="flashes">
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+            
+            <form method="POST">
+                <div class="input-group">
+                    <label for="username">用户名</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">密码</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="input-group">
+                    <label for="invite_code">邀请码</label>
+                    <input type="text" id="invite_code" name="invite_code" required>
+                </div>
+                <button type="submit" class="btn primary-btn">注册</button>
+            </form>
+            <p class="link-text">已有账号? <a href="{{ url_for('login') }}">立即登录</a></p>
+        </div>
+    </div>
+</body>
+</html>

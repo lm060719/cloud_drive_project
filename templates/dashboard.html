@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>云盘 - {{ username }}</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <h1>我的云盘 ☁️</h1>
+            <nav class="breadcrumb-nav">
+                <a href="{{ url_for('dashboard') }}">/ 根目录</a>
+                {% for breadcrumb in breadcrumbs %}
+                    / <a href="{{ breadcrumb.url }}">{{ breadcrumb.name }}</a>
+                {% endfor %}
+            </nav>
+        </div>
+        <div class="header-right">
+            <span>欢迎, <strong>{{ username }}</strong></span>
+            <a href="{{ url_for('logout') }}" class="btn logout-btn"><i class="fas fa-sign-out-alt"></i> 登出</a>
+        </div>
+    </header>
+
+    <main class="dashboard-content">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <div class="action-bar">
+    <form id="upload-form" enctype="multipart/form-data">
+        <input type="file" name="file" id="file-input" style="display: none;" required>
+        <input type="hidden" name="current_path" value="{{ current_path_string }}">
+        <button type="button" class="btn action-btn" onclick="document.getElementById('file-input').click()">
+            <i class="fas fa-upload"></i> 上传文件
+        </button>
+        <span id="file-name-display" class="file-name-display">未选择文件</span>
+        <button type="submit" class="btn submit-btn" id="upload-submit-btn" disabled>确认上传</button>
+    </form>
+
+    <div id="progress-container" style="display: none; width: 100%; margin-top: 10px;">
+        <div id="progress-bar" style="height: 20px; background-color: #e0e0e0; border-radius: 5px;">
+            <div id="progress-fill" style="height: 100%; width: 0%; background-color: #007bff; border-radius: 5px; text-align: center; color: white;">
+                0%
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn action-btn" onclick="showModal('new-folder-modal')">
+        <i class="fas fa-folder-plus"></i> 新建文件夹
+    </button>
+
+    </div>
+
+        <table class="file-list">
+            <thead>
+                <tr>
+                    <th class="name-col">名称</th>
+                    <th class="type-col">类型</th>
+                    <th class="size-col">大小</th>
+                    <th class="action-col">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if breadcrumbs %}
+                <tr class="folder-row up-one-level" onclick="window.location.href='{{ url_for('dashboard', path='/'.join(breadcrumbs[:-1] | map(attribute='name'))) }}'">
+                    <td class="name-col"><i class="fas fa-level-up-alt"></i> ..</td>
+                    <td class="type-col">上级目录</td>
+                    <td class="size-col">--</td>
+                    <td class="action-col"></td>
+                </tr>
+                {% endif %}
+            
+                {% for item in items %}
+                <tr class="{{ item.type }}-row" 
+                    {% if item.type == 'folder' %}
+                    onclick="window.location.href='{{ url_for('dashboard', path=item.full_path) }}'"
+                    {% endif %}
+                >
+                    <td class="name-col">
+                        {% if item.type == 'folder' %}
+                        <i class="fas fa-folder folder-icon"></i>
+                        {% else %}
+                        <i class="fas fa-file file-icon"></i>
+                        {% endif %}
+                        {{ item.name }}
+                    </td>
+                    <td class="type-col">{{ item.type }}</td>
+                    <td class="size-col">
+                        {% if item.type == 'file' %}
+                        {{ "{:,.2f}".format(item.size / 1024 / 1024) }} MB
+                        {% else %}
+                        --
+                        {% endif %}
+                    </td>
+                    <td class="action-col">
+                        {% if item.type == 'file' %}
+                        <a href="{{ url_for('download_file', file_path=item.full_path) }}" class="download-link">
+                            <i class="fas fa-download"></i> 下载
+                        </a>
+                        <span class="action-divider">|</span>
+                        {% endif %}
+                        
+                        <a href="javascript:void(0);" 
+                           onclick="confirmDelete('{{ item.type }}', '{{ item.name }}', '{{ item.full_path }}', event)"
+                           class="delete-link" title="删除">
+                            <i class="fas fa-trash-alt"></i> 删除
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        {% if not items and not breadcrumbs %}
+        <p class="empty-message">此文件夹为空，快上传你的第一个文件吧！</p>
+        {% endif %}
+
+    </main>
+
+    <div id="new-folder-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="hideModal('new-folder-modal')">&times;</span>
+            <h3>新建文件夹</h3>
+            <form action="{{ url_for('new_folder') }}" method="POST">
+                <input type="text" name="folder_name" placeholder="请输入文件夹名称" required class="full-width-input">
+                <input type="hidden" name="current_path" value="{{ current_path_string }}">
+                <button type="submit" class="btn primary-btn full-width-btn">创建</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
